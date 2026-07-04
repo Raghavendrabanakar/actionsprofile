@@ -1,33 +1,26 @@
-name :  Build WF
+name: Build WF
+
 on:
   push:
-      branches:
-        -main
+    branches: [ main ]
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
 
-   jobs:
-     Build:
-       run-on: ubuntu-latest
-       steps:
-         -name: code checkout
-         uses: actions/ checkout@v4
+      - name: Build (mvn install)
+        run: mvn -B install
 
-         -name: maven Build 
-         run : mvn install
+      - name: Checkstyle
+        run: mvn -B checkstyle:checkstyle
 
-
-
-    Testing:
-     Build:
-       run-on: ubuntu-latest
-       needs: Build 
-       steps:
-         -name: code checkout
-         uses: actions/ checkout@v4
-
-         -name: Run tests on main branch
-         run : mvn install
-      
-        -name: checkstyle
-         run: mvn checkstyle:checkstyle
