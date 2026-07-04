@@ -23,4 +23,3 @@ jobs:
 
       - name: Checkstyle
         run: mvn -B checkstyle:checkstyle
-
