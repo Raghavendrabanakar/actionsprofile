@@ -1,4 +1,4 @@
-name: Build WorkFlow
+name: Build WF
 
 on:
   push:
