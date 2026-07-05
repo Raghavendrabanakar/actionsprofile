@@ -1,19 +1,15 @@
 name: Build WF
-
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
-  pull request:
+  pull_request:
     branches: [ main ]
 
   workflow_dispatch:
 
-
   schedule:
-    - cron: "10  14 * * 1-5" # Runs every day at UTC (10 AM PST) from Monday to Friday
+    - cron: "10 14 * * 1-5"# Runs every day at UTC (10 AM PST) from Monday to Friday
 
 jobs:
   build:
@@ -38,5 +34,3 @@ jobs:
             -name: checkstyle
              run: mvn checkstyle:checkstyle
 
-
-      -
